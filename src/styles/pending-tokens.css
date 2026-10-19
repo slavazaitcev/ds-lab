@@ -1,0 +1,44 @@
+/*
+ * ВРЕМЕННЫЕ токены: типографика, отступы, скругления, размеры контролов.
+ *
+ * В Figma эти токены ещё не оформлены, поэтому значения здесь — рабочие
+ * предположения (сетка 4px, системный шрифт), а не данные из Figma.
+ * Когда токены появятся в Figma: добавить их экспорт в tokens/, научить
+ * scripts/build-tokens.mjs их генерировать и удалить этот файл.
+ * Имена переменных стараемся не менять, чтобы компоненты не пришлось править.
+ */
+:root {
+  /* Шрифт */
+  --font-family-base: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-size-s: 12px;
+  --line-height-s: 16px;
+  --font-size-m: 14px;
+  --line-height-m: 20px;
+  --font-size-l: 16px;
+  --line-height-l: 24px;
+
+  /* Отступы */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+
+  /* Скругления */
+  --radius-m: 8px;
+
+  /* Высота контролов (кнопки, инпуты) */
+  --control-height-s: 28px;
+  --control-height-m: 36px;
+  --control-height-l: 44px;
+
+  /* Фокус и анимации */
+  --border-width-s: 2px;
+  --focus-offset: 2px;
+  --duration-fast: 120ms;
+  --duration-spin: 700ms;
+}

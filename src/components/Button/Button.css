@@ -1,0 +1,134 @@
+/*
+ * Button. Цвета только из семантических токенов (--color-*), размеры из --space-*, --font-*, --control-*.
+ * Классы .is-hover / .is-active / .is-focus нужны Storybook, чтобы показать состояния рядом.
+ */
+
+.ds-button {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  height: var(--btn-height);
+  padding-inline: var(--btn-padding-inline);
+  border: 0;
+  border-radius: var(--radius-m);
+  background: var(--btn-bg);
+  color: var(--btn-fg);
+  font-family: var(--font-family-base);
+  font-size: var(--btn-font-size);
+  line-height: var(--btn-line-height);
+  font-weight: var(--font-weight-medium);
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background-color var(--duration-fast), color var(--duration-fast);
+}
+
+/* Размеры */
+.ds-button--s {
+  --btn-height: var(--control-height-s);
+  --btn-padding-inline: var(--space-3);
+  --btn-font-size: var(--font-size-s);
+  --btn-line-height: var(--line-height-s);
+}
+.ds-button--m {
+  --btn-height: var(--control-height-m);
+  --btn-padding-inline: var(--space-4);
+  --btn-font-size: var(--font-size-m);
+  --btn-line-height: var(--line-height-m);
+}
+.ds-button--l {
+  --btn-height: var(--control-height-l);
+  --btn-padding-inline: var(--space-5);
+  --btn-font-size: var(--font-size-l);
+  --btn-line-height: var(--line-height-l);
+}
+
+/* Варианты: набор цветов для трёх состояний */
+.ds-button--primary {
+  --btn-bg: var(--color-bg-brand-bold-default);
+  --btn-bg-hover: var(--color-bg-brand-bold-hover);
+  --btn-bg-active: var(--color-bg-brand-bold-active);
+  --btn-fg: var(--color-text-constant-white);
+  --btn-fg-hover: var(--color-text-constant-white);
+  --btn-fg-active: var(--color-text-constant-white);
+}
+.ds-button--secondary {
+  --btn-bg: var(--color-bg-neutral-default);
+  --btn-bg-hover: var(--color-bg-neutral-hover);
+  --btn-bg-active: var(--color-bg-neutral-active);
+  --btn-fg: var(--color-text-default);
+  --btn-fg-hover: var(--color-text-default);
+  --btn-fg-active: var(--color-text-default);
+}
+.ds-button--tertiary {
+  --btn-bg: var(--color-bg-neutral-soft-default);
+  --btn-bg-hover: var(--color-bg-neutral-soft-hover);
+  --btn-bg-active: var(--color-bg-neutral-soft-active);
+  --btn-fg: var(--color-text-brand-default);
+  --btn-fg-hover: var(--color-text-brand-hover);
+  --btn-fg-active: var(--color-text-brand-active);
+}
+.ds-button--danger {
+  --btn-bg: var(--color-bg-danger-bold-default);
+  --btn-bg-hover: var(--color-bg-danger-bold-hover);
+  --btn-bg-active: var(--color-bg-danger-bold-active);
+  --btn-fg: var(--color-text-constant-white);
+  --btn-fg-hover: var(--color-text-constant-white);
+  --btn-fg-active: var(--color-text-constant-white);
+}
+
+/* Состояния */
+.ds-button:hover:not(:disabled),
+.ds-button.is-hover {
+  background: var(--btn-bg-hover);
+  color: var(--btn-fg-hover);
+}
+.ds-button:active:not(:disabled),
+.ds-button.is-active {
+  background: var(--btn-bg-active);
+  color: var(--btn-fg-active);
+}
+.ds-button:focus-visible,
+.ds-button.is-focus {
+  outline: var(--border-width-s) solid var(--color-border-brand-default);
+  outline-offset: var(--focus-offset);
+}
+.ds-button:disabled {
+  opacity: var(--opacity-disabled);
+  cursor: not-allowed;
+}
+.ds-button.is-loading {
+  cursor: progress;
+}
+/* Во время загрузки подпись остаётся в разметке, чтобы кнопка не меняла ширину */
+.ds-button.is-loading .ds-button__label,
+.ds-button.is-loading .ds-button__icon {
+  visibility: hidden;
+}
+
+.ds-button--full {
+  display: flex;
+  width: 100%;
+}
+
+.ds-button__icon {
+  display: inline-flex;
+  align-items: center;
+}
+
+.ds-button__spinner {
+  position: absolute;
+  width: 1em;
+  height: 1em;
+  border: var(--border-width-s) solid currentColor;
+  border-right-color: transparent;
+  border-radius: 50%;
+  animation: ds-button-spin var(--duration-spin) linear infinite;
+}
+
+@keyframes ds-button-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

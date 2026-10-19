@@ -1,0 +1,28 @@
+{
+  "name": "ds-lab",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "description": "Лаборатория дизайн-системы: токены из Figma, компоненты в коде, прототипы экранов",
+  "scripts": {
+    "tokens": "node scripts/build-tokens.mjs",
+    "dev": "npm run tokens && vite",
+    "build": "npm run tokens && tsc --noEmit && vite build",
+    "typecheck": "tsc --noEmit",
+    "storybook": "npm run tokens && storybook dev -p 6006",
+    "build-storybook": "npm run tokens && storybook build"
+  },
+  "dependencies": {
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1"
+  },
+  "devDependencies": {
+    "@storybook/react-vite": "^10.6.2",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "@vitejs/plugin-react": "^6.1.2",
+    "storybook": "^10.6.2",
+    "typescript": "~5.9.3",
+    "vite": "^8.3.4"
+  }
+}
