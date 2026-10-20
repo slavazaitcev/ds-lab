@@ -27,12 +27,25 @@ React 19 + TypeScript + Vite, Storybook 10, обычный CSS (без Tailwind 
 5. Если нужного токена нет (цвет для состояния, отступ, размер), не выдумывать значение. Взять ближайший существующий токен, поставить в коде комментарий `/* TODO(token): … */` и добавить строку в `docs/token-gaps.md`. В ответе человеку сказать об этом прямо.
 6. Состояния hover, active, focus-visible, disabled, loading описываем всегда, где они применимы. Токены `hover`/`active` берём парами с `default` из той же группы.
 
+## Иконки
+
+- Только Tabler (`@tabler/icons-react`, версия зафиксирована в package.json) и только через `src/icons`. Напрямую из `@tabler/icons-react` в компонентах и экранах не импортировать.
+- `src/icons/index.ts` реэкспортирует только иконки, которые стоят в Figma-компонентах. Новая иконка попадает туда, когда появилась в Figma.
+- Рисуем через обёртку `Icon` (`src/icons/Icon.tsx`): `icon`, `size` (s/m/l), `color`.
+- Цвет иконки только токеном `color.icon.*` и задаётся явно. От цвета текста не наследуется, `currentColor` как источник цвета не используем. Внутри компонента цвет по состояниям ставим через `--ds-icon-color` (токеном) и `color="component"`.
+- Размеры только через `--icon-size-*`. Толщина линии только по `src/icons/spec.ts` (там же формула пересчёта stroke).
+- Для экранов и компонентов можно использовать только иконки из `src/icons/index.ts`.
+- `StoryIcon` и страница Icons / All Tabler icons (`src/stories/tabler`) — только для экспериментов в Storybook. В `src/components` и `src/screens` их не импортировать (исключение: stories). Утверждённую иконку добавляем в `src/icons/index.ts`.
+- Этот инструмент работает только в `npm run storybook`. В `npm run build-storybook` он выключен (см. `.storybook/main.ts`): иначе в сборку попадают все ~6200 иконок Tabler.
+
 ## Структура и именование
 
 ```
 src/components/<Name>/   Name.tsx, Name.css, Name.stories.tsx, index.ts
+src/icons/               Icon.tsx, spec.ts, index.ts (набор иконок из Figma)
 src/screens/             экраны-референсы и новые экраны, собираются только из src/components
 src/stories/             страницы документации (каталог токенов)
+src/stories/tabler/      эксперименты с любыми иконками Tabler, только dev Storybook
 ```
 
 - Компоненты в PascalCase, один компонент на папку, публичный экспорт через `index.ts`.

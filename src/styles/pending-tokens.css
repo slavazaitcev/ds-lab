@@ -1,44 +1,56 @@
 /*
  * ВРЕМЕННЫЕ токены: типографика, отступы, скругления, размеры контролов.
  *
- * В Figma эти токены ещё не оформлены, поэтому значения здесь — рабочие
- * предположения (сетка 4px, системный шрифт), а не данные из Figma.
+ * В Figma эти значения пока не оформлены переменными (кроме стиля текста P/Medium
+ * и размера иконки `m`), поэтому они живут здесь. Значения с пометкой «Figma»
+ * сняты с компонента button--light-primary (2026-10-20). Значения с пометкой
+ * «предположение» в Figma не найдены.
  * Когда токены появятся в Figma: добавить их экспорт в tokens/, научить
  * scripts/build-tokens.mjs их генерировать и удалить этот файл.
  * Имена переменных стараемся не менять, чтобы компоненты не пришлось править.
  */
 :root {
-  /* Шрифт */
-  --font-family-base: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-  --font-weight-regular: 400;
-  --font-weight-medium: 500;
-  --font-size-s: 12px;
-  --line-height-s: 16px;
-  --font-size-m: 14px;
-  --line-height-m: 20px;
-  --font-size-l: 16px;
-  --line-height-l: 24px;
+  /* Шрифт. Figma: Roboto. Сам шрифт в проект не подключён, без него сработают системные запасные */
+  --font-family-base: Roboto, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+  --font-weight-regular: 400; /* Figma: P/Regular */
+  --font-weight-medium: 500; /* Figma: P/Medium */
+  --letter-spacing-base: 0; /* Figma: P/Medium, P/Regular */
+  --font-size-s: 12px; /* предположение */
+  --line-height-s: 16px; /* предположение */
+  --font-size-m: 14px; /* Figma: P/Medium */
+  --line-height-m: 20px; /* Figma: P/Medium */
+  --font-size-l: 16px; /* предположение */
+  --line-height-l: 24px; /* предположение */
 
   /* Отступы */
-  --space-1: 4px;
-  --space-2: 8px;
-  --space-3: 12px;
-  --space-4: 16px;
-  --space-5: 20px;
-  --space-6: 24px;
-  --space-8: 32px;
+  --space-1: 4px; /* Figma: padding вокруг text-кнопки в фокусе */
+  --space-2: 8px; /* Figma: вертикальный padding и gap кнопки */
+  --space-3: 12px; /* предположение */
+  --space-4: 16px; /* Figma: горизонтальный padding кнопки */
+  --space-5: 20px; /* предположение */
+  --space-6: 24px; /* предположение */
+  --space-8: 32px; /* предположение */
 
   /* Скругления */
-  --radius-m: 8px;
+  --radius-s: 4px; /* Figma: text-кнопка в фокусе */
+  --radius-m: 8px; /* Figma: кнопка */
 
   /* Высота контролов (кнопки, инпуты) */
-  --control-height-s: 28px;
-  --control-height-m: 36px;
-  --control-height-l: 44px;
+  --control-height-s: 28px; /* предположение: в Figma нет size=small */
+  --control-height-m: 36px; /* Figma: size=medium */
+  --control-height-l: 44px; /* предположение: в Figma нет size=large */
 
-  /* Фокус и анимации */
-  --border-width-s: 2px;
-  --focus-offset: 2px;
-  --duration-fast: 120ms;
-  --duration-spin: 700ms;
+  /* Иконки. Толщина линии для каждого размера: src/icons/spec.ts */
+  --icon-size-s: 16px; /* задано Славой, в Figma-узле кнопки не встречается */
+  --icon-size-m: 20px; /* Figma: переменная `m` */
+  --icon-size-l: 24px; /* задано Славой, в Figma-узле кнопки не встречается */
+  --loader-size-m: 24px; /* Figma: .loader в кнопке medium */
+
+  /* Обводки, фокус и анимации */
+  --border-width-xs: 1px; /* Figma: рамка outline-кнопки */
+  --border-width-s: 2px; /* предположение: толщина линии спиннера */
+  --focus-ring-width: 4px; /* Figma: кольцо фокуса, рисуется внутрь кнопки */
+  --focus-offset: 2px; /* предположение, кнопка его больше не использует */
+  --duration-fast: 120ms; /* предположение */
+  --duration-spin: 700ms; /* предположение */
 }

@@ -1,0 +1,44 @@
+/* Оформление страницы-каталога иконок. Это служебная документация, правила для компонентов сюда не относятся. */
+.icons__themes {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
+  gap: 16px;
+}
+
+.icons {
+  padding: 16px;
+  border: 1px solid var(--color-border-soft);
+  border-radius: 8px;
+  background: var(--color-bg-surface-canvas);
+  color: var(--color-text-default);
+}
+
+.icons__title {
+  margin: 0 0 12px;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.icons__table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+}
+
+.icons__table th {
+  padding: 8px;
+  text-align: left;
+  font-weight: 500;
+  color: var(--color-text-softer);
+  border-bottom: 1px solid var(--color-border-soft);
+}
+
+.icons__table td {
+  padding: 12px 8px;
+  border-bottom: 1px solid var(--color-border-soft);
+  vertical-align: middle;
+}
+
+.icons__name {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+}

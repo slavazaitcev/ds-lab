@@ -1,0 +1,7 @@
+/* Место под иконку, пока она грузится: тот же размер, чтобы ничего не прыгало. */
+.story-icon__pending {
+  display: inline-block;
+  flex-shrink: 0;
+  border-radius: 4px;
+  background: var(--color-bg-neutral-default);
+}

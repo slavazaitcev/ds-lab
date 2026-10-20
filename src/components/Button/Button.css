@@ -1,30 +1,54 @@
 /*
- * Button. Цвета только из семантических токенов (--color-*), размеры из --space-*, --font-*, --control-*.
+ * Button по макету Figma button--light-primary (v1.2.2).
+ * Цвета только из семантических токенов (--color-*), размеры из pending-tokens.css.
+ * Иконки: src/icons/Icon, цвет по состояниям — --btn-icon* -> --ds-icon-color.
+ * Рамка outline и кольцо фокуса рисуются внутренней тенью, как inside-обводка в Figma:
+ * размер кнопки от них не меняется.
  * Классы .is-hover / .is-active / .is-focus нужны Storybook, чтобы показать состояния рядом.
  */
 
 .ds-button {
+  /* Значения по умолчанию, варианты переопределяют их */
+  --btn-bg: var(--color-bg-transparent);
+  --btn-bg-hover: var(--btn-bg);
+  --btn-bg-active: var(--btn-bg-hover);
+  --btn-fg-hover: var(--btn-fg);
+  --btn-fg-active: var(--btn-fg-hover);
+  --btn-icon-hover: var(--btn-icon);
+  --btn-icon-active: var(--btn-icon-hover);
+  --btn-border: var(--color-border-transparent);
+  --btn-bg-disabled: var(--btn-bg);
+  --btn-fg-disabled: var(--color-text-softer);
+  --btn-icon-disabled: var(--color-icon-default);
+  --btn-border-disabled: var(--btn-border);
+  --btn-ring: var(--color-border-brand-softer);
+
   position: relative;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: var(--space-2);
   height: var(--btn-height);
-  padding-inline: var(--btn-padding-inline);
+  padding: 0 var(--btn-padding-inline);
   border: 0;
   border-radius: var(--radius-m);
   background: var(--btn-bg);
+  box-shadow: inset 0 0 0 var(--border-width-xs) var(--btn-border);
   color: var(--btn-fg);
   font-family: var(--font-family-base);
   font-size: var(--btn-font-size);
   line-height: var(--btn-line-height);
   font-weight: var(--font-weight-medium);
+  letter-spacing: var(--letter-spacing-base);
   white-space: nowrap;
   cursor: pointer;
-  transition: background-color var(--duration-fast), color var(--duration-fast);
+  transition:
+    background-color var(--duration-fast),
+    color var(--duration-fast),
+    box-shadow var(--duration-fast);
 }
 
-/* Размеры */
+/* Размеры. В Figma есть только medium, s и l — предположения (см. docs/token-gaps.md) */
 .ds-button--s {
   --btn-height: var(--control-height-s);
   --btn-padding-inline: var(--space-3);
@@ -44,41 +68,133 @@
   --btn-line-height: var(--line-height-l);
 }
 
-/* Варианты: набор цветов для трёх состояний */
+/* ---------- Варианты ---------- */
+
 .ds-button--primary {
-  --btn-bg: var(--color-bg-brand-bold-default);
-  --btn-bg-hover: var(--color-bg-brand-bold-hover);
-  --btn-bg-active: var(--color-bg-brand-bold-active);
+  --btn-bg: var(--color-bg-brand-default);
+  --btn-bg-hover: var(--color-bg-brand-hover);
+  --btn-bg-active: var(--color-bg-brand-active);
   --btn-fg: var(--color-text-constant-white);
-  --btn-fg-hover: var(--color-text-constant-white);
-  --btn-fg-active: var(--color-text-constant-white);
+  --btn-icon: var(--color-icon-constant-white);
+  --btn-bg-disabled: var(--color-bg-neutral-bolder-default);
+  --btn-fg-disabled: var(--color-text-constant-white);
+  --btn-icon-disabled: var(--color-icon-constant-white);
 }
-.ds-button--secondary {
-  --btn-bg: var(--color-bg-neutral-default);
-  --btn-bg-hover: var(--color-bg-neutral-hover);
-  --btn-bg-active: var(--color-bg-neutral-active);
-  --btn-fg: var(--color-text-default);
-  --btn-fg-hover: var(--color-text-default);
-  --btn-fg-active: var(--color-text-default);
-}
-.ds-button--tertiary {
-  --btn-bg: var(--color-bg-neutral-soft-default);
-  --btn-bg-hover: var(--color-bg-neutral-soft-hover);
-  --btn-bg-active: var(--color-bg-neutral-soft-active);
-  --btn-fg: var(--color-text-brand-default);
-  --btn-fg-hover: var(--color-text-brand-hover);
-  --btn-fg-active: var(--color-text-brand-active);
-}
-.ds-button--danger {
+.ds-button--primary.ds-button--danger {
   --btn-bg: var(--color-bg-danger-bold-default);
   --btn-bg-hover: var(--color-bg-danger-bold-hover);
   --btn-bg-active: var(--color-bg-danger-bold-active);
-  --btn-fg: var(--color-text-constant-white);
-  --btn-fg-hover: var(--color-text-constant-white);
-  --btn-fg-active: var(--color-text-constant-white);
+  --btn-ring: var(--color-border-danger-soft);
+}
+.ds-button--primary.ds-button--warning {
+  --btn-bg: var(--color-bg-warning-bold-default);
+  --btn-bg-hover: var(--color-bg-warning-bold-hover);
+  --btn-bg-active: var(--color-bg-warning-bold-active);
+  --btn-fg: var(--color-text-warning-default);
+  /* В Figma иконка здесь белая (icon/constant-white) при тёмном тексте, оставляем как в макете */
+  --btn-ring: var(--color-border-warning-soft);
+}
+.ds-button--primary.ds-button--success {
+  --btn-bg: var(--color-bg-success-bold-default);
+  --btn-bg-hover: var(--color-bg-success-bold-hover);
+  --btn-bg-active: var(--color-bg-success-bold-active);
+  --btn-ring: var(--color-border-success-soft);
 }
 
-/* Состояния */
+.ds-button--secondary {
+  --btn-bg: var(--color-bg-brand-softer-default);
+  --btn-bg-hover: var(--color-bg-brand-softer-hover);
+  --btn-bg-active: var(--color-bg-brand-softer-active);
+  /* TODO(token): в Figma текст в покое #1770e2 без переменной, взяли text.brand.default как в hover/pressed */
+  --btn-fg: var(--color-text-brand-default);
+  --btn-icon: var(--color-icon-brand-default);
+  --btn-bg-disabled: var(--color-bg-neutral-bolder-default);
+  --btn-fg-disabled: var(--color-text-constant-white);
+  --btn-icon-disabled: var(--color-icon-constant-white);
+}
+
+.ds-button--outline {
+  --btn-bg-hover: var(--color-bg-brand-softer-hover);
+  --btn-bg-active: var(--color-bg-brand-softer-active);
+  --btn-fg: var(--color-text-brand-default);
+  --btn-icon: var(--color-icon-brand-default);
+  --btn-border: var(--color-border-brand-default);
+  --btn-border-disabled: var(--color-border-bolder);
+}
+.ds-button--outline.ds-button--danger {
+  --btn-bg-hover: var(--color-bg-danger-hover);
+  --btn-bg-active: var(--color-bg-danger-active);
+  --btn-fg: var(--color-text-danger-default);
+  --btn-icon: var(--color-icon-danger-default);
+  --btn-border: var(--color-border-danger-default);
+  --btn-ring: var(--color-border-danger-soft);
+}
+.ds-button--outline.ds-button--warning {
+  --btn-bg-hover: var(--color-bg-warning-hover);
+  --btn-bg-active: var(--color-bg-warning-active);
+  --btn-fg: var(--color-text-warning-default);
+  --btn-icon: var(--color-icon-warning-default);
+  --btn-border: var(--color-border-warning-default);
+  --btn-ring: var(--color-border-warning-soft);
+}
+.ds-button--outline.ds-button--success {
+  --btn-bg-hover: var(--color-bg-success-hover);
+  --btn-bg-active: var(--color-bg-success-active);
+  --btn-fg: var(--color-text-success-default);
+  --btn-icon: var(--color-icon-success-default);
+  --btn-border: var(--color-border-success-default);
+  --btn-ring: var(--color-border-success-soft);
+}
+
+.ds-button--light {
+  --btn-bg-hover: var(--color-bg-brand-softer-hover);
+  --btn-bg-active: var(--color-bg-brand-softer-active);
+  /* TODO(token): в Figma текст в покое #1770e2 без переменной, взяли text.brand.default как в hover/pressed */
+  --btn-fg: var(--color-text-brand-default);
+  --btn-icon: var(--color-icon-brand-default);
+}
+
+/* text: без фона и отступов, высота по строке */
+.ds-button--text {
+  --btn-height: auto;
+  --btn-padding-inline: 0;
+  --btn-fg: var(--color-text-brand-default);
+  --btn-fg-hover: var(--color-text-brand-hover);
+  --btn-fg-active: var(--color-text-brand-active);
+  --btn-icon: var(--color-icon-brand-default);
+  --btn-icon-hover: var(--color-icon-brand-hover);
+  --btn-icon-active: var(--color-icon-brand-active);
+}
+.ds-button--text.ds-button--danger {
+  --btn-fg: var(--color-text-danger-default);
+  --btn-fg-hover: var(--color-text-danger-hover);
+  --btn-fg-active: var(--color-text-danger-active);
+  --btn-icon: var(--color-icon-danger-default);
+  --btn-icon-hover: var(--color-icon-danger-hover);
+  --btn-icon-active: var(--color-icon-danger-active);
+  --btn-ring: var(--color-border-danger-soft);
+}
+.ds-button--text.ds-button--warning {
+  --btn-fg: var(--color-text-warning-default);
+  --btn-fg-hover: var(--color-text-warning-hover);
+  --btn-fg-active: var(--color-text-warning-active);
+  --btn-icon: var(--color-icon-warning-default);
+  --btn-icon-hover: var(--color-icon-warning-hover);
+  --btn-icon-active: var(--color-icon-warning-active);
+  --btn-ring: var(--color-border-warning-soft);
+}
+.ds-button--text.ds-button--success {
+  --btn-fg: var(--color-text-success-default);
+  --btn-fg-hover: var(--color-text-success-hover);
+  --btn-fg-active: var(--color-text-success-active);
+  --btn-icon: var(--color-icon-success-default);
+  --btn-icon-hover: var(--color-icon-success-hover);
+  --btn-icon-active: var(--color-icon-success-active);
+  --btn-ring: var(--color-border-success-soft);
+}
+
+/* ---------- Состояния ---------- */
+
 .ds-button:hover:not(:disabled),
 .ds-button.is-hover {
   background: var(--btn-bg-hover);
@@ -89,15 +205,47 @@
   background: var(--btn-bg-active);
   color: var(--btn-fg-active);
 }
+.ds-button:hover:not(:disabled) .ds-button__icon,
+.ds-button.is-hover .ds-button__icon {
+  --ds-icon-color: var(--btn-icon-hover);
+}
+.ds-button:active:not(:disabled) .ds-button__icon,
+.ds-button.is-active .ds-button__icon {
+  --ds-icon-color: var(--btn-icon-active);
+}
+
+/* Фокус: кольцо 4px внутрь кнопки, у outline оно заменяет рамку */
 .ds-button:focus-visible,
 .ds-button.is-focus {
-  outline: var(--border-width-s) solid var(--color-border-brand-default);
-  outline-offset: var(--focus-offset);
+  outline: none;
+  box-shadow: inset 0 0 0 var(--focus-ring-width) var(--btn-ring);
 }
+/* У text-кнопки кольцо снаружи: в Figma рамка 4px лежит в padding 4px вокруг содержимого */
+.ds-button--text:focus-visible,
+.ds-button--text.is-focus {
+  box-shadow: none;
+}
+.ds-button--text:focus-visible::after,
+.ds-button--text.is-focus::after {
+  content: '';
+  position: absolute;
+  inset: calc(-1 * var(--space-1));
+  border: var(--focus-ring-width) solid var(--btn-ring);
+  border-radius: var(--radius-s);
+  pointer-events: none;
+}
+
 .ds-button:disabled {
+  background: var(--btn-bg-disabled);
+  box-shadow: inset 0 0 0 var(--border-width-xs) var(--btn-border-disabled);
+  color: var(--btn-fg-disabled);
   opacity: var(--opacity-disabled);
   cursor: not-allowed;
 }
+.ds-button:disabled .ds-button__icon {
+  --ds-icon-color: var(--btn-icon-disabled);
+}
+
 .ds-button.is-loading {
   cursor: progress;
 }
@@ -112,17 +260,20 @@
   width: 100%;
 }
 
+/* Цвет иконки задаём токеном через --ds-icon-color (см. src/icons/Icon.css), не через color текста */
 .ds-button__icon {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
+  --ds-icon-color: var(--btn-icon);
 }
 
 .ds-button__spinner {
   position: absolute;
-  width: 1em;
-  height: 1em;
+  width: var(--loader-size-m);
+  height: var(--loader-size-m);
   border: var(--border-width-s) solid currentColor;
-  border-right-color: transparent;
+  border-right-color: var(--color-border-transparent);
   border-radius: 50%;
   animation: ds-button-spin var(--duration-spin) linear infinite;
 }

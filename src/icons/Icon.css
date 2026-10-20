@@ -1,0 +1,27 @@
+/*
+ * Icon. Размер из --icon-size-*, цвет из --ds-icon-color (токен color.icon.*).
+ * Если цвет не задан, линия не рисуется: от цвета текста иконка не наследует.
+ */
+.ds-icon {
+  flex-shrink: 0;
+  stroke: var(--ds-icon-color);
+}
+
+.ds-icon--s {
+  width: var(--icon-size-s);
+  height: var(--icon-size-s);
+}
+.ds-icon--m {
+  width: var(--icon-size-m);
+  height: var(--icon-size-m);
+}
+.ds-icon--l {
+  width: var(--icon-size-l);
+  height: var(--icon-size-l);
+}
+
+/* Закрашенные (filled) варианты Tabler рисуются заливкой, а не линией */
+.ds-icon[class*='-filled'] {
+  fill: var(--ds-icon-color);
+  stroke: none;
+}
