@@ -4,7 +4,7 @@ import '../src/styles/index.css';
 const preview: Preview = {
   parameters: {
     layout: 'padded',
-    backgrounds: { disabled: true }, // фон берём из токена color.bg.surface.canvas, см. global.css
+    backgrounds: { disabled: true }, // фон берём из токенов, см. global.css
   },
   globalTypes: {
     theme: {
@@ -19,11 +19,24 @@ const preview: Preview = {
         dynamicTitle: true,
       },
     },
+    surface: {
+      description: 'Фон',
+      toolbar: {
+        title: 'Фон',
+        icon: 'paintbrush',
+        items: [
+          { value: 'canvas', title: 'Canvas (серый)' },
+          { value: 'container', title: 'Container (белый)' },
+        ],
+        dynamicTitle: true,
+      },
+    },
   },
-  initialGlobals: { theme: 'light' },
+  initialGlobals: { theme: 'light', surface: 'canvas' },
   decorators: [
     (Story, context) => {
       document.documentElement.dataset.theme = context.globals.theme === 'dark' ? 'dark' : 'light';
+      document.documentElement.dataset.surface = context.globals.surface === 'container' ? 'container' : 'canvas';
       return <Story />;
     },
   ],
