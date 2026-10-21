@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 import { InfoIcon } from './InfoIcon';
 
 const meta = {
-  title: 'Components/InfoIcon',
+  title: 'Формы/InfoIcon',
   component: InfoIcon,
   parameters: { layout: 'padded' },
   args: {

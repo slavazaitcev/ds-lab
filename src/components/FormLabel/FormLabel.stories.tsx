@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 import { FormLabel } from './FormLabel';
 
 const meta = {
-  title: 'Components/FormLabel',
+  title: 'Формы/FormLabel',
   component: FormLabel,
   parameters: { layout: 'padded' },
   args: {
