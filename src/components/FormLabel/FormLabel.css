@@ -1,0 +1,48 @@
+/*
+ * FormLabel по макету Figma form-label (node 4421:132923, v2.0.0).
+ * Цвет text.soft автоматически переключается в тёмной теме через data-theme="dark".
+ * Иконка info в size xxs/xs 16px (Figma: 14px) — нет токена --icon-size-xxs.
+ */
+
+.ds-form-label {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1); /* 4px: зазор между (текст+*) и иконкой */
+}
+
+.ds-form-label__label {
+  display: inline-flex;
+  align-items: baseline;
+  gap: var(--space-0-5); /* 2px: зазор между текстом и * */
+  font-family: var(--font-family-base);
+  font-weight: var(--font-weight-regular);
+  letter-spacing: var(--letter-spacing-base);
+  color: var(--color-text-soft);
+  cursor: default;
+}
+
+/* Размеры */
+.ds-form-label--xxs .ds-form-label__label {
+  font-size: var(--font-size-xxs);
+  line-height: var(--line-height-xxs);
+}
+.ds-form-label--xs .ds-form-label__label,
+.ds-form-label--s .ds-form-label__label {
+  font-size: var(--font-size-xs);
+  line-height: var(--line-height-xs);
+}
+.ds-form-label--m .ds-form-label__label,
+.ds-form-label--l .ds-form-label__label,
+.ds-form-label--xl .ds-form-label__label {
+  font-size: var(--font-size-m);
+  line-height: var(--line-height-m);
+}
+
+.ds-form-label__required {
+  color: var(--color-text-danger-default);
+}
+
+/* Вертикальное выравнивание кнопки InfoIcon относительно текста подписи */
+.ds-form-label__info-icon {
+  flex-shrink: 0;
+}

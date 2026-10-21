@@ -15,14 +15,19 @@
   --font-weight-regular: 400; /* Figma: P/Regular */
   --font-weight-medium: 500; /* Figma: P/Medium */
   --letter-spacing-base: 0; /* Figma: P/Medium, P/Regular */
-  --font-size-s: 12px; /* предположение */
-  --line-height-s: 16px; /* предположение */
+  --font-size-xxs: 12px; /* Figma: Caption 2/Regular (form-label xxs) */
+  --line-height-xxs: 14px; /* Figma: Caption 2/Regular */
+  --font-size-xs: 13px; /* Figma: Caption 1/Regular (form-label xs/s) */
+  --line-height-xs: 16px; /* Figma: Caption 1/Regular */
+  --font-size-s: 12px; /* предположение: button size=s */
+  --line-height-s: 16px; /* предположение: button size=s */
   --font-size-m: 14px; /* Figma: P/Medium */
   --line-height-m: 20px; /* Figma: P/Medium */
   --font-size-l: 16px; /* предположение */
   --line-height-l: 24px; /* предположение */
 
   /* Отступы */
+  --space-0-5: 2px; /* Figma: зазор перед * в form-label */
   --space-1: 4px; /* Figma: padding вокруг text-кнопки в фокусе */
   --space-2: 8px; /* Figma: вертикальный padding и gap кнопки */
   --space-3: 12px; /* предположение */

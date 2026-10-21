@@ -21,3 +21,7 @@
 | 2026-10-20 | Button | У primary в default/hover/pressed в узле две иконочные переменные: `icon.constant-white` и `icon.inverse`; у outline (brand) — `icon.brand.default` и `icon.accent.blue`. По списку переменных не видно, какая из них на иконке, а какая на стрелке или счётчике | `icon.constant-white` у primary и `icon.brand.default` у outline: только они встречаются во всех состояниях варианта |
 | 2026-10-20 | Button | Стрелка `toggle-arrow` (8×4) в Figma нарисована вектором, а не иконкой из набора. В Tabler ей нет пары | Не переносили |
 | 2026-10-20 | Button | У outline success в disabled (4390:89431) нет `opacity/disabled`, у остальных disabled есть | В коде прозрачность у всех disabled одинаковая |
+| 2026-10-21 | FormLabel | Иконка info в размерах xxs/xs: в Figma 14px, у нас нет `--icon-size-xxs` и нет размера s (16px) у Icon — используем `size="s"` (16px) | `--icon-size-s` (16px), `TODO(token)` в FormLabel.tsx |
+| 2026-10-21 | FormLabel | Иконка info в размерах l/xl: в Figma 18px wrapper с SVG 20px, у нас нет `--icon-size-s+` — используем `size="m"` (20px) | `--icon-size-m` (20px) |
+| 2026-10-21 | FormLabel | Нижний отступ компонента в Figma: 4px (xxs/xs), 6px (s/m/l), 8px (xl) — это скорее gap между label и полем. В коде не переносили, управляется родителем (Input) | — |
+| 2026-10-21 | FormLabel | Размеры xxs, xs, s, l, xl в Figma не используются в input--light-primary (только m) | Реализованы все, пригодятся при переносе других контролов |

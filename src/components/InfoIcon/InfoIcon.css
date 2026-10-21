@@ -1,0 +1,35 @@
+/*
+ * InfoIcon (context-info-icon) по макету Figma node 4421:132763, v2.0.0.
+ * Только size=medium (16px). Кольцо фокуса рисуется снаружи через box-shadow без inset.
+ */
+
+.ds-info-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--icon-size-s);
+  height: var(--icon-size-s);
+  padding: 0;
+  border: 0;
+  border-radius: var(--radius-s);
+  background: transparent;
+  cursor: pointer;
+  --ds-icon-color: var(--color-icon-default);
+  transition: box-shadow var(--duration-fast);
+}
+
+.ds-info-icon:hover:not(:disabled),
+.ds-info-icon.is-hover {
+  --ds-icon-color: var(--color-icon-hover);
+}
+
+.ds-info-icon:focus-visible,
+.ds-info-icon.is-focus {
+  outline: none;
+  box-shadow: 0 0 0 var(--focus-ring-width) var(--color-border-brand-softer);
+}
+
+.ds-info-icon:disabled {
+  opacity: var(--opacity-disabled);
+  cursor: not-allowed;
+}
