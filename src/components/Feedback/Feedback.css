@@ -1,0 +1,19 @@
+.ds-feedback {
+  /* типографика — Caption 1/Regular (13/16), Figma: medium */
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-xs);
+  line-height: var(--line-height-xs);
+  font-weight: var(--font-weight-regular);
+  letter-spacing: var(--letter-spacing-base);
+
+  /* отступ сверху — зазор между полем и подписью */
+  padding-top: var(--feedback-pt-m);
+
+  margin: 0;
+}
+
+/* цвет по типу */
+.ds-feedback--helper-text { color: var(--color-text-soft); }
+.ds-feedback--danger      { color: var(--color-text-danger-default); }
+.ds-feedback--warning     { color: var(--color-text-warning-default); }
+.ds-feedback--success     { color: var(--color-text-success-default); }

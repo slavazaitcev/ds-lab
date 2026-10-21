@@ -52,6 +52,9 @@
   --loader-size-m: 24px; /* Figma: .loader в кнопке medium */
 
   /* Обводки, фокус и анимации */
+  /* Feedback */
+  --feedback-pt-m: 6px; /* Figma: отступ сверху (зазор между полем и подписью), medium */
+
   --border-width-xs: 1px; /* Figma: рамка outline-кнопки */
   --border-width-s: 2px; /* предположение: толщина линии спиннера */
   --focus-ring-width: 4px; /* Figma: кольцо фокуса, рисуется внутрь кнопки */
