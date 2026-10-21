@@ -25,3 +25,7 @@
 | 2026-10-21 | FormLabel | Иконка info в размерах l/xl: в Figma 18px wrapper с SVG 20px, у нас нет `--icon-size-s+` — используем `size="m"` (20px) | `--icon-size-m` (20px) |
 | 2026-10-21 | FormLabel | Нижний отступ компонента в Figma: 4px (xxs/xs), 6px (s/m/l), 8px (xl) — это скорее gap между label и полем. В коде не переносили, управляется родителем (Input) | — |
 | 2026-10-21 | FormLabel | Размеры xxs, xs, s, l, xl в Figma не используются в input--light-primary (только m) | Реализованы все, пригодятся при переносе других контролов |
+| 2026-10-21 | ButtonIcon | Counter radius 13px из Figma, не кратно 4, переменной в Figma нет | `--radius-counter: 13px` в pending-tokens.css |
+| 2026-10-21 | ButtonIcon | **Расхождение с другими компонентами**: в btn-icon фон счётчика и цвет стрелки намеренно ссылаются на `--btnicon-fg` (тот же цвет, что иконка кнопки). В обычной Button счётчик имеет отдельный bg-токен (`--color-bg-neutral-bolder-default` в disabled, цветной bg-токен в primary и т. д.). В btn-icon всё выровнено в один цвет по решению Славы (2026-10-21). | Реализовано через единственную переменную `--btnicon-fg`; counter и arrow используют её напрямую |
+| 2026-10-21 | ButtonIcon | toggle-arrow (8×4px) — кастомный SVG-вектор, в Tabler аналога нет | Inline SVG в ButtonIcon.tsx; используется `var(--btnicon-fg)` как stroke |
+| 2026-10-21 | ButtonIcon | В Figma только size=medium | Реализован только `size="m"`, s и l не делаем |

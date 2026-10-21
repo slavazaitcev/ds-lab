@@ -31,7 +31,7 @@ function ButtonWithTablerIcons({ leftIconName = '', rightIconName = '', ...props
 }
 
 const meta = {
-  title: 'Components/Button',
+  title: 'Кнопки/Button',
   component: Button,
   render: (args) => <ButtonWithTablerIcons {...args} />,
   args: {

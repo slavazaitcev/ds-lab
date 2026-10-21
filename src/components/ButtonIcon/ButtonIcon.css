@@ -1,0 +1,147 @@
+/*
+ * ButtonIcon по макету Figma btn-icon--light-primary (v2.3.0, node 4390:92295).
+ * Только size=medium, Figma знает только этот размер.
+ * Особенность: counter и arrow используют --btnicon-fg (тот же цвет, что иконка).
+ * Это отличается от обычной Button, где счётчик имеет отдельный bg-токен.
+ * Подробнее: docs/token-gaps.md
+ */
+
+.ds-btnicon {
+  --btnicon-fg: var(--color-icon-default);
+  --btnicon-fg-hover: var(--color-icon-hover);
+  --btnicon-fg-active: var(--color-icon-active);
+  --btnicon-ring: var(--color-border-brand-softer);
+  --btnicon-bg: var(--color-bg-transparent);
+
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-1);
+  padding: var(--space-2);
+  border: 0;
+  border-radius: var(--radius-m);
+  background: var(--btnicon-bg);
+  cursor: pointer;
+  transition: background-color var(--duration-fast);
+}
+
+/* type=inline: без padding, высота по иконке */
+.ds-btnicon--inline {
+  padding: 0;
+}
+
+/* ---------- Варианты ---------- */
+
+.ds-btnicon--primary {
+  --btnicon-fg: var(--color-icon-brand-default);
+  --btnicon-fg-hover: var(--color-icon-brand-hover);
+  --btnicon-fg-active: var(--color-icon-brand-active);
+}
+
+.ds-btnicon--danger {
+  --btnicon-fg: var(--color-icon-danger-default);
+  --btnicon-fg-hover: var(--color-icon-danger-hover);
+  --btnicon-fg-active: var(--color-icon-danger-active);
+  --btnicon-ring: var(--color-border-danger-soft);
+}
+
+.ds-btnicon--warning {
+  --btnicon-fg: var(--color-icon-warning-default);
+  --btnicon-fg-hover: var(--color-icon-warning-hover);
+  --btnicon-fg-active: var(--color-icon-warning-active);
+  --btnicon-ring: var(--color-border-warning-soft);
+}
+
+.ds-btnicon--success {
+  --btnicon-fg: var(--color-icon-success-default);
+  --btnicon-fg-hover: var(--color-icon-success-hover);
+  --btnicon-fg-active: var(--color-icon-success-active);
+  --btnicon-ring: var(--color-border-success-soft);
+}
+
+/* ---------- Состояния ---------- */
+
+/* hover/active переопределяют --btnicon-fg: все дочерние элементы (icon, counter, arrow) меняются вместе */
+.ds-btnicon:hover:not(:disabled),
+.ds-btnicon.is-hover {
+  --btnicon-fg: var(--btnicon-fg-hover);
+}
+
+.ds-btnicon:active:not(:disabled),
+.ds-btnicon.is-active {
+  --btnicon-fg: var(--btnicon-fg-active);
+}
+
+.ds-btnicon:focus-visible,
+.ds-btnicon.is-focus {
+  outline: none;
+  box-shadow: inset 0 0 0 var(--focus-ring-width) var(--btnicon-ring);
+}
+
+.ds-btnicon:disabled {
+  opacity: var(--opacity-disabled);
+  cursor: not-allowed;
+}
+
+.ds-btnicon.is-loading {
+  cursor: progress;
+}
+
+.ds-btnicon.is-loading .ds-btnicon__icon {
+  visibility: hidden;
+}
+
+/* ---------- Элементы ---------- */
+
+/* Иконка: цвет через --ds-icon-color, который наследует --btnicon-fg */
+.ds-btnicon__icon {
+  display: inline-flex;
+  --ds-icon-color: var(--btnicon-fg);
+}
+
+/* Спиннер поверх скрытой иконки */
+.ds-btnicon__spinner {
+  position: absolute;
+  width: var(--icon-size-m);
+  height: var(--icon-size-m);
+  border: var(--border-width-s) solid currentColor;
+  border-right-color: var(--color-border-transparent);
+  border-radius: 50%;
+  color: var(--btnicon-fg);
+  animation: ds-btnicon-spin var(--duration-spin) linear infinite;
+}
+
+@keyframes ds-btnicon-spin {
+  to { transform: rotate(360deg); }
+}
+
+/*
+ * Counter: фон = --btnicon-fg (тот же токен, что цвет иконки).
+ * TODO(token): radius 13px из Figma, не кратно 4; хранится в --radius-counter.
+ */
+.ds-btnicon__counter {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--icon-size-m);
+  height: var(--icon-size-m);
+  border-radius: var(--radius-counter);
+  background: var(--btnicon-fg);
+  color: var(--color-text-inverse);
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-m);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-m);
+  letter-spacing: var(--letter-spacing-base);
+  white-space: nowrap;
+}
+
+/*
+ * Arrow: стрелка-указатель (toggle indicator), цвет через stroke = --btnicon-fg.
+ * Рисуется кастомным SVG (не Tabler), т. к. размер 8×4px в наборе иконок не встречается.
+ */
+.ds-btnicon__arrow {
+  display: inline-flex;
+  flex-shrink: 0;
+}

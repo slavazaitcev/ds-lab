@@ -39,6 +39,7 @@
   /* Скругления */
   --radius-s: 4px; /* Figma: text-кнопка в фокусе */
   --radius-m: 8px; /* Figma: кнопка */
+  --radius-counter: 13px; /* TODO(token): Figma btn-icon счётчик, не кратно 4 */
 
   /* Высота контролов (кнопки, инпуты) */
   --control-height-s: 28px; /* предположение: в Figma нет size=small */
