@@ -33,3 +33,54 @@
   opacity: var(--opacity-disabled);
   cursor: not-allowed;
 }
+
+/* ── Обёртка с тултипом ──────────────────────────────── */
+
+.ds-info-icon-wrapper {
+  position: relative;
+  display: inline-flex;
+}
+
+.ds-info-icon-tooltip {
+  position: absolute;
+  top: calc(100% + var(--tooltip-gap));
+  left: 0;
+  z-index: 100;
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--duration-fast);
+  width: max-content;
+  max-width: var(--tooltip-max-width);
+}
+
+/* Safe area: прозрачный мостик между кнопкой и тултипом.
+   Пока курсор пересекает зазор, wrapper остаётся :hover — тултип не скрывается. */
+.ds-info-icon-wrapper::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  height: var(--tooltip-gap);
+}
+
+/* Когда внутри description — занимаем фиксированную ширину для читаемого переноса */
+.ds-info-icon-tooltip:has(.ds-tooltip--has-description) {
+  width: var(--tooltip-max-width);
+}
+
+/* Показываем при ховере и фокусе на wrapper (кроме disabled) */
+.ds-info-icon-wrapper:hover:not([data-disabled]) .ds-info-icon-tooltip,
+.ds-info-icon-wrapper:focus-within:not([data-disabled]) .ds-info-icon-tooltip {
+  visibility: visible;
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Storybook: показываем при is-hover на кнопке */
+.ds-info-icon.is-hover + .ds-info-icon-tooltip {
+  visibility: visible;
+  opacity: 1;
+  pointer-events: auto;
+}

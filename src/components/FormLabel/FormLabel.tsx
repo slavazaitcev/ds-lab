@@ -6,14 +6,18 @@ export type FormLabelSize = 'xxs' | 'xs' | 's' | 'm' | 'l' | 'xl';
 export interface FormLabelProps {
   label: string;
   required?: boolean;
-  /** Иконка-подсказка справа от текста (декоративная, без tooltip пока) */
+  /** Иконка-подсказка справа от текста */
   infoIcon?: boolean;
+  /** Текст тултипа при ховере на иконку (активирует интерактивный режим InfoIcon) */
+  tooltipText?: string;
+  /** Описание тултипа (показывается если задан tooltipText) */
+  tooltipDescription?: string;
   size?: FormLabelSize;
   htmlFor?: string;
   id?: string;
 }
 
-export function FormLabel({ label, required = false, infoIcon = false, size = 'm', htmlFor, id }: FormLabelProps) {
+export function FormLabel({ label, required = false, infoIcon = false, tooltipText, tooltipDescription, size = 'm', htmlFor, id }: FormLabelProps) {
   return (
     <div className={`ds-form-label ds-form-label--${size}`} id={id}>
       <label className="ds-form-label__label" htmlFor={htmlFor}>
@@ -25,8 +29,10 @@ export function FormLabel({ label, required = false, infoIcon = false, size = 'm
         )}
       </label>
       {infoIcon && (
-        /* aria-hidden: в контексте FormLabel иконка декоративная, интерактив добавит родитель */
-        <InfoIcon aria-hidden="true" tabIndex={-1} className="ds-form-label__info-icon" />
+        tooltipText
+          ? <InfoIcon tooltip={tooltipText} tooltipDescription={tooltipDescription} className="ds-form-label__info-icon" />
+          /* без tooltip — декоративная, не фокусируется */
+          : <InfoIcon aria-hidden="true" tabIndex={-1} className="ds-form-label__info-icon" />
       )}
     </div>
   );

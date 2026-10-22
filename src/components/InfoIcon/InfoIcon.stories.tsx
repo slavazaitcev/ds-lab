@@ -59,6 +59,22 @@ export const Types: Story = {
   ),
 };
 
+/** Тултип при ховере и фокусе */
+export const WithTooltip: Story = {
+  name: 'С тултипом',
+  render: (args) => (
+    <div style={{ display: 'flex', gap: 32, alignItems: 'center', padding: 24 }}>
+      <InfoIcon {...args} tooltip="Краткое пояснение" />
+      <InfoIcon
+        {...args}
+        tooltip="Это поле обязательно"
+        tooltipDescription="Без этого значения система не сможет обработать запрос. Убедитесь, что данные введены корректно."
+      />
+      <InfoIcon {...args} tooltip="Hover = tooltip виден" storyState="hover" />
+    </div>
+  ),
+};
+
 export const DarkTheme: Story = {
   render: (args) => (
     <div data-theme="dark" style={{ background: 'var(--color-bg-default)', padding: '16px', borderRadius: '8px', display: 'flex', gap: '24px', alignItems: 'center' }}>

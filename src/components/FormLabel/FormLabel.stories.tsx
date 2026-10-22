@@ -45,6 +45,23 @@ export const States: Story = {
   ),
 };
 
+export const WithTooltip: Story = {
+  name: 'С тултипом на InfoIcon',
+  render: (args) => (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '24px', alignItems: 'flex-start', padding: '24px' }}>
+      <FormLabel {...args} label="Краткий тултип" infoIcon tooltipText="Подсказка к полю" />
+      <FormLabel
+        {...args}
+        label="Тултип с описанием"
+        infoIcon
+        tooltipText="Это поле обязательно"
+        tooltipDescription="Без этого значения система не сможет обработать запрос. Убедитесь, что данные введены корректно."
+      />
+      <FormLabel {...args} label="Без тултипа (декоративная)" infoIcon />
+    </div>
+  ),
+};
+
 export const DarkTheme: Story = {
   render: (args) => (
     <div data-theme="dark" style={{ background: 'var(--color-bg-default)', padding: '16px', borderRadius: '8px' }}>

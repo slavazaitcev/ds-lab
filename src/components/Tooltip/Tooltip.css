@@ -1,0 +1,67 @@
+/*
+ * Tooltip по макету Figma node-id=4458:80574 (v2.0.0).
+ * Тени через --tooltip-filter-shadow (pending-tokens.css) — цвет привязан к --color-shadow-default.
+ * Ширина по содержимому, max-width ограничена только при наличии description.
+ * Стрелки визуально убраны; классы --arrow-* зарезервированы для позиционирования.
+ */
+
+.ds-tooltip {
+  display: inline-block;
+  position: relative;
+  filter: var(--tooltip-filter-shadow);
+}
+
+/* ── Контейнер ─────────────────────────────────────────── */
+
+.ds-tooltip__container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-3); /* 8/12 */
+  background: var(--color-bg-surface-overlay);
+  border-radius: var(--radius-m);
+}
+
+.ds-tooltip--has-description .ds-tooltip__container {
+  padding: var(--space-3); /* 12 со всех сторон */
+  max-width: var(--tooltip-max-width);
+}
+
+/* ── Текст ─────────────────────────────────────────────── */
+
+.ds-tooltip__body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.ds-tooltip__title {
+  margin: 0;
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-xs);
+  line-height: var(--line-height-xs);
+  font-weight: var(--font-weight-regular);
+  color: var(--color-text-default);
+}
+
+.ds-tooltip--has-description .ds-tooltip__title {
+  font-weight: var(--font-weight-medium);
+}
+
+.ds-tooltip__description {
+  margin: 0;
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-xs);
+  line-height: var(--line-height-xs-body);
+  font-weight: var(--font-weight-regular);
+  color: var(--color-text-soft);
+}
+
+/* ── Extension слот ────────────────────────────────────── */
+
+.ds-tooltip__extension {
+  min-height: 28px;
+  width: 100%;
+}
+
+/* Стрелки убраны визуально; классы --arrow-* зарезервированы для позиционирования */

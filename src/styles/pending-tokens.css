@@ -29,6 +29,7 @@
   /* Отступы */
   --space-0-5: 2px; /* Figma: зазор перед * в form-label */
   --space-1: 4px; /* Figma: padding вокруг text-кнопки в фокусе */
+  --space-1-5: 6px; /* предположение: зазор между полем и подсказкой в Input */
   --space-2: 8px; /* Figma: вертикальный padding и gap кнопки */
   --space-3: 12px; /* предположение */
   --space-4: 16px; /* Figma: горизонтальный padding кнопки */
@@ -62,4 +63,13 @@
   --focus-offset: 2px; /* предположение, кнопка его больше не использует */
   --duration-fast: 120ms; /* предположение */
   --duration-spin: 700ms; /* предположение */
+
+  /* Tooltip */
+  --tooltip-max-width: 348px; /* TODO(token): Figma, только для варианта с description */
+  --line-height-xs-body: 18px; /* TODO(token): Figma, text description внутри tooltip */
+  --tooltip-gap: 8px; /* зазор между триггером и тултипом */
+  /* TODO(token): тени тултипа — цвет через --color-shadow-default, Figma поправит позже */
+  --tooltip-filter-shadow:
+    drop-shadow(0 0 2px color-mix(in srgb, var(--color-shadow-default) 40%, transparent))
+    drop-shadow(0 4px 16px var(--color-shadow-default));
 }

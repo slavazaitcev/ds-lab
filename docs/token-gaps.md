@@ -29,3 +29,7 @@
 | 2026-10-21 | ButtonIcon | **Расхождение с другими компонентами**: в btn-icon фон счётчика и цвет стрелки намеренно ссылаются на `--btnicon-fg` (тот же цвет, что иконка кнопки). В обычной Button счётчик имеет отдельный bg-токен (`--color-bg-neutral-bolder-default` в disabled, цветной bg-токен в primary и т. д.). В btn-icon всё выровнено в один цвет по решению Славы (2026-10-21). | Реализовано через единственную переменную `--btnicon-fg`; counter и arrow используют её напрямую |
 | 2026-10-21 | ButtonIcon | toggle-arrow (8×4px) — кастомный SVG-вектор, в Tabler аналога нет | Inline SVG в ButtonIcon.tsx; используется `var(--btnicon-fg)` как stroke |
 | 2026-10-21 | ButtonIcon | В Figma только size=medium | Реализован только `size="m"`, s и l не делаем |
+| 2026-10-21 | Tooltip | Тени `tooltip-light` и `Light Shadow` используют цвет `#141F2F`, отличный от `--color-shadow-default` (`#383b3f`). Слава поправит в Figma, пока привязали к `--color-shadow-default` через `color-mix`. | `--tooltip-filter-shadow` в pending-tokens.css, TODO(token) |
+| 2026-10-21 | Tooltip | Нет токена `line-height` 18px для description-текста тултипа | `--line-height-xs-body: 18px` в pending-tokens.css |
+| 2026-10-21 | Tooltip | Нет токена для max-width тултипа с description (348px из Figma) | `--tooltip-max-width: 348px` в pending-tokens.css |
+| 2026-10-21 | Input | Нет токена для hover-состояния рамки инпута. Когда появится в Figma, назвать `color.border.input.hover` | Пока `--color-border-bolder` |

@@ -1,0 +1,135 @@
+/*
+ * Input по макету Figma node-id=4421:102610 (только size=medium).
+ * Состояния hover, focus-within, error, disabled.
+ * Hover-бордер: --color-border-bolder. TODO(token): станет color.border.input.hover когда появится в Figma.
+ * Placeholder: --color-text-soft. TODO(token): нет токена color.text.placeholder.
+ */
+
+.ds-input {
+  display: flex;
+  flex-direction: column;
+  /* Цвет иконок внутри поля */
+  --ds-icon-color: var(--color-icon-default);
+}
+
+/* ── Лейбл ──────────────────────────────────────────────── */
+
+.ds-input__label {
+  margin-bottom: var(--space-1);
+}
+
+/* ── Поле ввода ─────────────────────────────────────────── */
+
+.ds-input__field {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  height: var(--control-height-m);
+  padding-inline: var(--space-3);
+  background: var(--color-bg-input-default);
+  border: var(--border-width-xs) solid var(--color-border-input-default);
+  border-radius: var(--radius-m);
+  transition:
+    border-color var(--duration-fast),
+    box-shadow var(--duration-fast);
+}
+
+/* Hover: только когда не в фокусе и не disabled и не в состоянии ошибки */
+.ds-input:not(.ds-input--disabled):not(.ds-input--error) .ds-input__field:not(:focus-within):hover {
+  /* TODO(token): color.border.input.hover — сейчас color.border.bolder */
+  border-color: var(--color-border-bolder);
+}
+
+/* Active/focus: бордер становится brand при любом фокусе (клик мышью или таб) */
+.ds-input__field:focus-within {
+  border-color: var(--color-border-brand-default);
+}
+
+/* Кольцо фокусировки — только при навигации с клавиатуры (JS выставляет data-keyboard-focus) */
+.ds-input__field[data-keyboard-focus] {
+  box-shadow: 0 0 0 var(--focus-ring-width) var(--color-border-brand-softer);
+}
+
+/* ── Контрол ────────────────────────────────────────────── */
+
+.ds-input__control {
+  flex: 1;
+  min-width: 0;
+  border: none;
+  background: transparent;
+  outline: none;
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-m);
+  line-height: var(--line-height-m);
+  color: var(--color-text-default);
+  padding: 0;
+}
+
+/* TODO(token): нет токена color.text.placeholder */
+.ds-input__control::placeholder {
+  color: var(--color-text-soft);
+}
+
+/* ── Иконки ─────────────────────────────────────────────── */
+
+.ds-input__icon {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+/* ── Размеры ────────────────────────────────────────────── */
+
+/* s — предположение, в Figma нет */
+.ds-input--s .ds-input__field {
+  height: var(--control-height-s);
+  padding-inline: var(--space-2);
+  gap: var(--space-1);
+}
+
+.ds-input--s .ds-input__control {
+  font-size: var(--font-size-xs);
+  line-height: var(--line-height-xs);
+}
+
+/* l — предположение, в Figma нет */
+.ds-input--l .ds-input__field {
+  height: var(--control-height-l);
+  padding-inline: var(--space-4);
+}
+
+.ds-input--l .ds-input__control {
+  font-size: var(--font-size-l);
+  line-height: var(--line-height-l);
+}
+
+/* ── Состояния ──────────────────────────────────────────── */
+
+/* Ошибка */
+.ds-input--error .ds-input__field {
+  border-color: var(--color-border-danger-default);
+}
+
+/* Disabled */
+.ds-input--disabled {
+  opacity: var(--opacity-disabled);
+  cursor: not-allowed;
+}
+
+.ds-input--disabled .ds-input__field {
+  cursor: not-allowed;
+}
+
+.ds-input--disabled .ds-input__control {
+  pointer-events: none;
+}
+
+/* ── Feedback ───────────────────────────────────────────── */
+
+.ds-input__feedback {
+  margin-top: var(--feedback-pt-m);
+}
+/* Внутри Input у Feedback свой паддинг не нужен — отступ уже задаёт обёртка выше */
+.ds-input__feedback .ds-feedback {
+  padding: 0;
+}
