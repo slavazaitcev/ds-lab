@@ -1,0 +1,6 @@
+{
+  "plugins": [
+    "@protei-autumn-dev/ai-opencode-ftk@2.2.0"
+  ],
+  "experimental": { "subagent_depth": 3 }
+}

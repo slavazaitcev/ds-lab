@@ -64,6 +64,9 @@
   --duration-fast: 120ms; /* предположение */
   --duration-spin: 700ms; /* предположение */
 
+  /* TextArea */
+  --textarea-min-height-m: 76px; /* Figma: node-id=4458:78319, минимальная высота поля medium */
+
   /* Tooltip */
   --tooltip-max-width: 348px; /* TODO(token): Figma, только для варианта с description */
   --line-height-xs-body: 18px; /* TODO(token): Figma, text description внутри tooltip */

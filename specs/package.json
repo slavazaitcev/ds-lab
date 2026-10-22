@@ -1,0 +1,11 @@
+{
+  "name": "@protei-autumn-dev/monorepo",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "packageManager": "yarn@4.17.0",
+  "workspaces": [
+    "design-rules",
+    "design-system"
+  ]
+}

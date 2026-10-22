@@ -1,0 +1,100 @@
+/*
+ * TextArea по макету Figma node-id=4458-78319 (только size=medium).
+ * Состояния hover, focus-within, error, disabled.
+ * Hover-бордер: --color-border-bolder. TODO(token): станет color.border.input.hover когда появится в Figma.
+ * Placeholder: --color-text-soft. TODO(token): нет токена color.text.placeholder.
+ */
+
+.ds-textarea {
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── Лейбл ──────────────────────────────────────────────── */
+
+.ds-textarea__label {
+  margin-bottom: var(--space-1-5);
+}
+
+/* ── Поле ──────────────────────────────────────────────── */
+
+.ds-textarea__field {
+  display: flex;
+  min-height: var(--textarea-min-height-m);
+  background: var(--color-bg-input-default);
+  border: var(--border-width-xs) solid var(--color-border-input-default);
+  border-radius: var(--radius-m);
+  transition:
+    border-color var(--duration-fast),
+    box-shadow var(--duration-fast);
+  overflow: hidden;
+}
+
+/* Hover: только когда не в фокусе и не disabled и не в состоянии ошибки */
+.ds-textarea:not(.ds-textarea--disabled):not(.ds-textarea--error) .ds-textarea__field:not(:focus-within):hover {
+  /* TODO(token): color.border.input.hover — сейчас color.border.bolder */
+  border-color: var(--color-border-bolder);
+}
+
+/* Focus: бордер становится brand */
+.ds-textarea__field:focus-within {
+  border-color: var(--color-border-brand-default);
+}
+
+/* Кольцо фокусировки — только при навигации с клавиатуры */
+.ds-textarea__field[data-keyboard-focus] {
+  box-shadow: 0 0 0 var(--focus-ring-width) var(--color-border-brand-softer);
+}
+
+/* ── Контрол ────────────────────────────────────────────── */
+
+.ds-textarea__control {
+  flex: 1;
+  min-width: 0;
+  min-height: var(--textarea-min-height-m);
+  border: none;
+  background: transparent;
+  outline: none;
+  resize: vertical;
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-m);
+  line-height: var(--line-height-m);
+  color: var(--color-text-default);
+  padding: var(--space-2) var(--space-3);
+}
+
+/* TODO(token): нет токена color.text.placeholder */
+.ds-textarea__control::placeholder {
+  color: var(--color-text-soft);
+}
+
+/* ── Состояния ──────────────────────────────────────────── */
+
+/* Ошибка */
+.ds-textarea--error .ds-textarea__field {
+  border-color: var(--color-border-danger-default);
+}
+
+/* Disabled */
+.ds-textarea--disabled {
+  opacity: var(--opacity-disabled);
+  cursor: not-allowed;
+}
+
+.ds-textarea--disabled .ds-textarea__field {
+  cursor: not-allowed;
+}
+
+.ds-textarea--disabled .ds-textarea__control {
+  pointer-events: none;
+}
+
+/* ── Feedback ───────────────────────────────────────────── */
+
+.ds-textarea__feedback {
+  margin-top: var(--feedback-pt-m);
+}
+
+.ds-textarea__feedback .ds-feedback {
+  padding: 0;
+}
